@@ -10,7 +10,9 @@ class AppNavigator {
     }
     Navigator.of(context).push(MaterialPageRoute<Null>(
         builder: (BuildContext context) {
-          return Container();
+          return Container(
+            color: Colors.red,
+          );
         }));
   }
 
