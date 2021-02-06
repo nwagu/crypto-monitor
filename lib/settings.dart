@@ -8,10 +8,7 @@ class SettingsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 1.0,
-        title: Text(
-          "Settings",
-          style: Theme.of(context).textTheme.headline4,
-        ),
+        title: Text("Settings"),
       ),
       body: Container(),
     );

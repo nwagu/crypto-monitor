@@ -25,22 +25,24 @@ class CustomListTile extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Icon(coinIcon),
                 ),
-                Center(
-                  child: Text(
-                    coinName,
-                    textAlign: TextAlign.center,
-                  ),
+                Expanded(
+                    child: Text(
+                      coinName,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )
                 ),
-                Center(
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
                     coinValue,
                     textAlign: TextAlign.center,
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 )
               ],
