@@ -1,11 +1,26 @@
+import 'package:crypto_monitor/constants/models/api_response.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'constants/contants.dart';
 import 'home.dart';
+import 'dart:convert';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+
+}
+
+class _MyAppState extends State<MyApp> {
+
+  Future<ApiResponse> apiResponse;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +30,25 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: HomeScreen(apiResponse),
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+    apiResponse = fetchData();
+  }
+
 }
+
+Future<ApiResponse> fetchData() async {
+  final response = await http.get(requestUrl);
+
+  if (response.statusCode == 200) {
+    return ApiResponse.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to load data');
+  }
+}
+

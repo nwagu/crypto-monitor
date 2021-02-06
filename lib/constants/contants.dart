@@ -1,2 +1,5 @@
-var requestUrl = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=" +
-"NGN,USD,EUR,JPY,GBP,AUD,CAD,CHF,CNY,KES,GHS,UGX,ZAR,XAF,NZD,MYR,BND,GEL,RUB,INR";
+var baseUrl = "min-api.cryptocompare.com";
+
+var endpoint = "data/pricemulti?tsyms=NGN,USD&fsyms=BTC,ETH,LTC,ADA,XRP,DOGE";
+
+var requestUrl = "https://" + baseUrl + "/" + endpoint;
