@@ -1,5 +1,5 @@
 enum Coin {
-  BTC,ETH,LTC,ADA,XRP,DOGE
+  BTC,ETH,LTC,ADA,XRP,DOGE,DOT,BCH,XLM,LNK,BNB,USDT,XMR,ZEC,BSV
 }
 
 extension CoinExtension on Coin {
@@ -13,12 +13,34 @@ extension CoinExtension on Coin {
       case Coin.LTC:
         return "Litecoin";
       case Coin.ADA:
-        return "Cordana";
+        return "Cardano";
       case Coin.XRP:
         return "Ripple";
       case Coin.DOGE:
         return "Dogecoin";
+      case Coin.DOT:
+        return "Polkadot";
+      case Coin.BCH:
+        return "Bitcoin Cash";
+      case Coin.XLM:
+        return "Stellar Lumen";
+      case Coin.LNK:
+        return "Chainlink";
+      case Coin.BNB:
+        return "Binance Coin";
+      case Coin.USDT:
+        return "USD Tether";
+      case Coin.XMR:
+        return "Monero";
+      case Coin.ZEC:
+        return "Zcash";
+      case Coin.BSV:
+        return "Bitcoin Satoshi’s Vision";
     }
+  }
+
+  String get symbol {
+    return this.toString().split('.').last;
   }
 
   String get iconUrl {
@@ -35,8 +57,24 @@ extension CoinExtension on Coin {
         return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/xrp.png";
       case Coin.DOGE:
         return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/doge.png";
-      default:
-        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/generic.png";
+      case Coin.DOT:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/dot.png";
+      case Coin.BCH:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/bch.png";
+      case Coin.XLM:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/xlm.png";
+      case Coin.LNK:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/lnk.png";
+      case Coin.BNB:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/bnb.png";
+      case Coin.USDT:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/usdt.png";
+      case Coin.XMR:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/xmr.png";
+      case Coin.ZEC:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/zec.png";
+      case Coin.BSV:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/bsv.png";
     }
   }
 
@@ -44,6 +82,6 @@ extension CoinExtension on Coin {
 
 String allCoinsCommaSeparated() {
   String result = "";
-  Coin.values.forEach((v) => result = result + v.toString() + ",");
+  Coin.values.forEach((v) => result = result + v.symbol + ",");
   return result;
 }

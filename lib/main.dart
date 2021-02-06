@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'constants/contants.dart';
 import 'constants/enums/coin.dart';
+import 'constants/enums/fiat.dart';
 import 'home.dart';
 import 'dart:convert';
 
@@ -45,7 +46,11 @@ class _MyAppState extends State<MyApp> {
 
 Future<ApiResponse> fetchData() async {
 
-  final response = await http.get(requestUrl + allCoinsCommaSeparated());
+  String url = requestUrl +
+      "?tsyms=" + allFiatCommaSeparated() +
+      "&fsyms=" + allCoinsCommaSeparated();
+
+  final response = await http.get(url);
 
   if (response.statusCode == 200) {
     return ApiResponse.fromJson(jsonDecode(response.body));

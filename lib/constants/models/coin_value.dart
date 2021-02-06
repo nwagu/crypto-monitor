@@ -9,9 +9,9 @@ part 'coin_value.g.dart';
 
 class CoinValue {
   @JsonKey(name: 'NGN')
-  final double ngn;
+  double ngn;
   @JsonKey(name: 'USD')
-  final double usd;
+  double usd;
 
   CoinValue(this.ngn, this.usd);
 

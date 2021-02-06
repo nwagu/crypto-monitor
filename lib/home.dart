@@ -42,12 +42,8 @@ class HomeScreen extends StatelessWidget {
             if (snapshot.hasData) {
               return ListView(
                 children: <Widget>[
-                  CoinListTile(Coin.BTC, snapshot.data.btc),
-                  CoinListTile(Coin.ETH, snapshot.data.eth),
-                  CoinListTile(Coin.LTC, snapshot.data.ltc),
-                  CoinListTile(Coin.ADA, snapshot.data.ada),
-                  CoinListTile(Coin.XRP, snapshot.data.xrp),
-                  CoinListTile(Coin.DOGE, snapshot.data.doge),
+                  for(var itemCoin in snapshot.data.coins.keys)
+                    CoinListTile(itemCoin, snapshot.data.coins[itemCoin])
                 ],
               );
             } else if (snapshot.hasError) {

@@ -1,1 +1,1 @@
-var requestUrl = "https://min-api.cryptocompare.com/data/pricemulti?tsyms=NGN,USD&fsyms=";
+var requestUrl = "https://min-api.cryptocompare.com/data/pricemulti";

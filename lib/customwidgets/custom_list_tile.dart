@@ -37,14 +37,14 @@ class CoinListTile extends StatelessWidget {
                 ),
                 Expanded(
                     child: Text(
-                  coin.toString(),
+                  coin.symbol + " (" + coin.name + ")",
                   textAlign: TextAlign.left,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(color: Colors.black),
                 )),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    "\$" + coinValue.usd.toString(),
+                    "\$" + coinValue?.usd.toString(),
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
