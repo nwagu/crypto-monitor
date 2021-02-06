@@ -1,13 +1,14 @@
+import 'package:crypto_monitor/constants/enums/coin.dart';
+import 'package:crypto_monitor/constants/models/coin_value.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../utils.dart';
 
-class CustomListTile extends StatelessWidget {
-  var coinIcon;
-  var coinName;
-  var coinValue;
+class CoinListTile extends StatelessWidget {
+  Coin coin;
+  CoinValue coinValue;
 
-  CustomListTile(this.coinName, this.coinIcon, this.coinValue);
+  CoinListTile(this.coin, this.coinValue);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class CustomListTile extends StatelessWidget {
           highlightColor: Colors.red,
           splashColor: Colors.green,
           onTap: () {
-            showSnackBar(context, coinName + " tapped");
+            showSnackBar(context, coin.name + " tapped");
           },
           child: Padding(
             padding: EdgeInsets.all(8.0),
@@ -28,19 +29,22 @@ class CustomListTile extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Icon(coinIcon),
+                  child: Image.network(
+                    coin.iconUrl,
+                    width: 48.0,
+                    height: 48.0,
+                  ),
                 ),
                 Expanded(
                     child: Text(
-                      coinName,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    )
-                ),
+                  coin.toString(),
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    coinValue,
+                    "\$" + coinValue.usd.toString(),
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),

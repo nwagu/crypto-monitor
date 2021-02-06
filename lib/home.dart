@@ -2,6 +2,7 @@ import 'package:crypto_monitor/constants/models/api_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'constants/enums/coin.dart';
 import 'customwidgets/custom_list_tile.dart';
 import 'navigator.dart';
 
@@ -41,12 +42,12 @@ class HomeScreen extends StatelessWidget {
             if (snapshot.hasData) {
               return ListView(
                 children: <Widget>[
-                  CustomListTile("BTC", Icons.money, "\$" + snapshot.data.btc.usd.toString()),
-                  CustomListTile("ETH", Icons.money, "\$" + snapshot.data.eth.usd.toString()),
-                  CustomListTile("LTC", Icons.money, "\$" + snapshot.data.ltc.usd.toString()),
-                  CustomListTile("ADA", Icons.money, "\$" + snapshot.data.ada.usd.toString()),
-                  CustomListTile("XRP", Icons.money, "\$" + snapshot.data.xrp.usd.toString()),
-                  CustomListTile("DOGE", Icons.money, "\$" + snapshot.data.doge.usd.toString()),
+                  CoinListTile(Coin.BTC, snapshot.data.btc),
+                  CoinListTile(Coin.ETH, snapshot.data.eth),
+                  CoinListTile(Coin.LTC, snapshot.data.ltc),
+                  CoinListTile(Coin.ADA, snapshot.data.ada),
+                  CoinListTile(Coin.XRP, snapshot.data.xrp),
+                  CoinListTile(Coin.DOGE, snapshot.data.doge),
                 ],
               );
             } else if (snapshot.hasError) {
@@ -54,7 +55,7 @@ class HomeScreen extends StatelessWidget {
             }
 
             // By default, show a loading spinner.
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
       ),
     );

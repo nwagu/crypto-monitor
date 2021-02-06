@@ -2,6 +2,7 @@ import 'package:crypto_monitor/constants/models/api_response.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'constants/contants.dart';
+import 'constants/enums/coin.dart';
 import 'home.dart';
 import 'dart:convert';
 
@@ -43,7 +44,8 @@ class _MyAppState extends State<MyApp> {
 }
 
 Future<ApiResponse> fetchData() async {
-  final response = await http.get(requestUrl);
+
+  final response = await http.get(requestUrl + allCoinsCommaSeparated());
 
   if (response.statusCode == 200) {
     return ApiResponse.fromJson(jsonDecode(response.body));
