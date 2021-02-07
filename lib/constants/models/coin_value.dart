@@ -1,22 +1,22 @@
-import 'package:json_annotation/json_annotation.dart';
-
-/// This allows the `CoinValue` class to access private members in
-/// the generated file. The value for this is *.g.dart, where
-/// the star denotes the source file name.
-part 'coin_value.g.dart';
-
-@JsonSerializable()
+import 'package:crypto_monitor/constants/enums/fiat.dart';
 
 class CoinValue {
-  @JsonKey(name: 'NGN')
-  double ngn;
-  @JsonKey(name: 'USD')
-  double usd;
 
-  CoinValue(this.ngn, this.usd);
+  Map<Fiat, dynamic> values;
 
-  factory CoinValue.fromJson(Map<String, dynamic> json) => _$CoinValueFromJson(json);
+  CoinValue.fromJson(dynamic json) {
 
-  Map<String, dynamic> toJson() => _$CoinValueToJson(this);
+    values = new Map();
+
+    Fiat.values.forEach((fiat) {
+      String fiatSymbol = fiat.symbol;
+      if(json[fiatSymbol] != null)
+        values[fiat] = json[fiatSymbol];
+    });
+  }
+
+  Map<Fiat, dynamic> toJson() {
+    return values;
+  }
 
 }

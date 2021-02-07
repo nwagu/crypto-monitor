@@ -1,16 +1,28 @@
 import 'package:crypto_monitor/constants/models/api_response.dart';
+import 'package:crypto_monitor/rest/requests.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'constants/enums/coin.dart';
 import 'customwidgets/custom_list_tile.dart';
 import 'navigator.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
 
-  var apiResponse;
+  @override
+  State<StatefulWidget> createState() {
+    return _HomeScreen();
+  }
 
-  HomeScreen(this.apiResponse);
+}
+
+class _HomeScreen extends State<HomeScreen> {
+
+  Future<ApiResponse> _apiResponse;
+
+  @override
+  void initState() {
+    super.initState();
+    _apiResponse = fetchData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,25 +36,32 @@ class HomeScreen extends StatelessWidget {
             itemBuilder: (context) => [
               PopupMenuItem(
                 height: 40.0,
-                child: Text("Settings"),
+                child: Text("Refresh"),
                 value: 0,
+              ),
+              PopupMenuItem(
+                height: 40.0,
+                child: Text("Settings"),
+                value: 1,
               ),
             ],
             onSelected: (value) {
-              if (value == 0) {
-                AppNavigator.navigateToSettings(context);
+              switch (value) {
+                case 0: setState(() {_apiResponse = fetchData();}) ; break;
+                case 1: AppNavigator.navigateToSettings(context); break;
+                default: break;
               }
             },
           )
         ],
       ),
       body: FutureBuilder<ApiResponse>(
-          future: apiResponse,
+          future: _apiResponse,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView(
                 children: <Widget>[
-                  for(var itemCoin in snapshot.data.coins.keys)
+                  for (var itemCoin in snapshot.data.coins.keys)
                     CoinListTile(itemCoin, snapshot.data.coins[itemCoin])
                 ],
               );
@@ -52,8 +71,7 @@ class HomeScreen extends StatelessWidget {
 
             // By default, show a loading spinner.
             return Center(child: CircularProgressIndicator());
-          }
-      ),
+          }),
     );
   }
 

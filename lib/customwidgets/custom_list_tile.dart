@@ -1,4 +1,5 @@
 import 'package:crypto_monitor/constants/enums/coin.dart';
+import 'package:crypto_monitor/constants/enums/fiat.dart';
 import 'package:crypto_monitor/constants/models/coin_value.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,7 @@ class CoinListTile extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    "\$" + coinValue?.usd.toString(),
+                    "\$" + coinValue.values[Fiat.USD].toString(),
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
