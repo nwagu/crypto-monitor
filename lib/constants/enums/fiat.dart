@@ -1,5 +1,5 @@
 enum Fiat {
-  NGN,USD
+  NGN,USD,CNY,JPY
 }
 
 extension FiatExtension on Fiat {
@@ -10,8 +10,12 @@ extension FiatExtension on Fiat {
         return "Naira";
       case Fiat.USD:
         return "US Dollars";
+      case Fiat.CNY:
+        return "Chinese Yuan";
+      case Fiat.JPY:
+        return "Japanese Yen";
       default:
-        return "Unknown currency";
+        return "Unknown";
     }
   }
 

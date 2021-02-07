@@ -1,9 +1,13 @@
 enum Coin {
-  BTC,ETH,LTC,ADA,XRP,DOGE,DOT,BCH,XLM,LNK,BNB,USDT,XMR,ZEC,BSV
+  BTC,ETH,LTC,ADA,XRP,DOGE,DOT,BCH,XLM,LNK,BNB,USDT,XMR,ZEC,BSV,ANON,
+  AQUA,ANT,BAT,BSD,BTCP,BTDX,BTX,BURST,BUSD,CLOAK,DAI,BIZZ,DASH,DEX,DGB,
+  // ECA,EFL,EURS,FLASH,FTO,GRS,HATCH,HBX,HT,ILC,KMD,JOB,LMY,LBTC,LEO,LINDA,
+  // LSK,MAX,MEC,MKR,MUSD,NBT,NLG,NXT,PAC,POT,REP,SMART,SPICE,START,SUM,SYS,
+  // THBX,TKN,TRTL,TRX,USDS,USDC,VIA,VOLTZ,WDC,XORI,TENT,XZC,BAY,NULS,MUE,
+  // XPM,ZPAE,TBCH,TBTC,TETH,TLTC,TRMG,TXRP
 }
 
 extension CoinExtension on Coin {
-
   String get name {
     switch (this) {
       case Coin.BTC:
@@ -36,6 +40,10 @@ extension CoinExtension on Coin {
         return "Zcash";
       case Coin.BSV:
         return "Bitcoin Satoshi’s Vision";
+      case Coin.ANON:
+        return "Anon";
+      default:
+        return "";
     }
   }
 
@@ -75,9 +83,12 @@ extension CoinExtension on Coin {
         return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/zec.png";
       case Coin.BSV:
         return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/bsv.png";
+      case Coin.ANON:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/anon.png";
+      default:
+        return "https://raw.githubusercontent.com/nwagu/cryptocurrency-icons/master/32/color/generic.png";
     }
   }
-
 }
 
 String allCoinsCommaSeparated() {
